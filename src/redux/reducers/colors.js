@@ -3,6 +3,7 @@ import {
     SET_COLOR_NAME, SET_COLOR_VALUE, 
     DELETE_COLOR, SELECT_COLOR 
 } from '../actionTypes';
+import { getColorById } from '../selectors';
 
 const initialState = {
     allIds: [],
@@ -12,6 +13,17 @@ const initialState = {
 
 function colorsReducer(state = initialState, action) {
     switch(action.type){
+        case DELETE_COLOR: {
+            const {id} = action.payload;
+            let byIds = state.byIds;
+            delete byIds[id];
+            return {
+                ...state,
+                allIds: state.allIds.filter(v=> (v !== id)),
+                byIds: byIds,
+                selectedId: null
+            };
+        }
         case SELECT_COLOR: {
             const {id} = action.payload;
             return {

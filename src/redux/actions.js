@@ -26,6 +26,11 @@ export const selectColor = (id) => ({
     payload: { id }
 });
 
+export const deleteColor = (id) => ({
+    type: DELETE_COLOR,
+    payload: { id }
+});
+
 export const setColorValue = (id, channels = defaultColorValue) => {
     channels = Color.valToChannels(channels);
     return ({

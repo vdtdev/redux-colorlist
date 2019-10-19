@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getSelectedColor } from '../../redux/selectors';
-import { addColor, updateColor, selectColor } from '../../redux/actions';
+import { addColor, updateColor, selectColor, deleteColor } from '../../redux/actions';
 
 import Color from '../../lib/color';
 // const Hash = require('../../lib/hash');
@@ -118,6 +118,7 @@ class ColorMixer extends React.Component {
     }
 
     handleButtonAction = (action) => {
+        let exists = (this.state.id !== null);
         if(action === 'reset'){
             let origColor = this.state.originalColor;
             this.setState({
@@ -127,7 +128,6 @@ class ColorMixer extends React.Component {
             });
         }
         if(action === 'save'){
-            let exists = (this.state.id !== null);
             if(exists){
                 console.info('color exists, updating');
                 this.props.updateColor(
@@ -145,6 +145,11 @@ class ColorMixer extends React.Component {
         }
         if(action === 'new'){
             this.props.selectColor(null);
+        }
+        if(action === 'delete'){
+            if(exists){
+                this.props.deleteColor(this.state.id);
+            }
         }
     }
     
@@ -186,6 +191,7 @@ class ColorMixer extends React.Component {
                     <button onClick={()=>{this.handleButtonAction('new')}}>New</button>
                     <button onClick={()=>{this.handleButtonAction('save')}}>Save</button>
                     <button onClick={()=>{this.handleButtonAction('reset')}}>Reset</button>
+                    <button onClick={()=>{this.handleButtonAction('delete')}}>Delete</button>
                 </div>
             </div>
         );
@@ -200,5 +206,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps, 
-    {addColor, updateColor, selectColor, getSelectedColor}
+    {addColor, updateColor, selectColor, getSelectedColor, deleteColor}
 )(ColorMixer);
