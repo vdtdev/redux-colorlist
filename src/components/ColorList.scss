@@ -1,0 +1,17 @@
+$list-item-size: 64pt;
+
+.colorList-container {
+    border: 1pt solid #808080;
+    border-radius: ($list-item-size / 8);
+    padding: ($list-item-size / 8);
+
+    & .cl-body {
+        overflow: hidden auto;
+
+        & .no-colors {
+            width: 100%;
+            padding: ($list-item-size / ($list-item-size / 4));
+            font-style: italic;
+        }
+    }
+}

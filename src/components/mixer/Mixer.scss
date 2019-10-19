@@ -1,0 +1,69 @@
+$mixer-pad: 4pt;
+.color-mixer {
+    padding: $mixer-pad;
+    font-size: 10pt;
+    & > .cm-body {
+        display: flex;
+        flex-direction: row;
+
+        & > .cm-preview {
+            padding: $mixer-pad;
+            padding-bottom: none;
+            border: 1pt solid #808080;
+            font-size: 10pt;
+            display: flex;
+            flex-direction: column;
+            & > .color {
+                flex: 1;
+            }
+            & > .value {
+                text-align: center;
+                width: 3em;
+            }
+        }
+
+        & > .cm-channels {
+            flex: 1;
+            padding: $mixer-pad;
+            display: flex;
+            flex-direction: column;
+
+            & > .cm-channel {
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                & > .cmc-name {
+                    width: 4em;
+                    text-align: left;
+                }
+
+                & > .cmc-number {
+                    width: 3em;
+                }
+
+                & > .cmc-range {
+                    flex: 1;
+                }
+            }
+        }
+    }
+
+    & > .cm-actions {
+        display: flex;
+        flex-direction: row;
+        padding-top: $mixer-pad;
+
+        & > .cm-name {
+            flex: 1;
+            & > input {
+                min-width: 15em;
+            }
+        }
+
+        & > * {
+            margin-right: $mixer-pad;
+        }
+    }
+}

@@ -1,0 +1,56 @@
+
+$thumb-size: 64pt;
+
+.cl-body {
+    & .thumb {
+        width: $thumb-size - 8pt;
+        height: $thumb-size - 8pt;
+        padding: 8pt;
+
+        margin-right: ($thumb-size/8);
+
+        // margin: ($thumb-size)/($thumb-size/4)pt;
+        // margin: 1pt * (($thumb-size)/($thumb-size/4));
+
+        border: 1pt solid black;
+        // outline: 1pt solid black;
+
+        display: inline-block;
+        overflow: hidden;
+
+        // Selected thumb label
+        &.selected > .label {
+            // padding: 0pt;
+            // border: 8pt solid red;
+            padding: 0pt;
+            outline: 2pt solid white;
+            border: 2pt solid black;
+        }
+
+        & > .label {
+            padding: 2pt;
+            background-color: white;
+            position: relative;
+            top: ($thumb-size/3);
+            text-align: center;
+            & >.name {
+                font-weight: bold;
+            }
+        }
+
+        /// Text within thumb
+        /*& > div[data-f] {
+            top: ($thumb-size/4);
+            text-align: center;
+            position: relative;
+
+            &[data-f=name]{
+                // name label specific
+                font-weight: bold;
+            }
+            &[data-f=code]{
+                // code label specific
+            }
+        }*/
+    }
+}
