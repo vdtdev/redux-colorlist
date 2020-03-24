@@ -3,12 +3,16 @@ import {
     SET_COLOR_NAME, SET_COLOR_VALUE, 
     DELETE_COLOR, SELECT_COLOR 
 } from '../actionTypes';
-import { getColorById } from '../selectors';
+// import { getColorById } from '../selectors';
 
 const initialState = {
     allIds: [],
     byIds: {},
     selectedId: null
+};
+
+const writeToLocal = (state) => {
+    window.localStorage.setItem('colors',JSON.stringify({colors: state}));
 };
 
 function colorsReducer(state = initialState, action) {
@@ -17,23 +21,28 @@ function colorsReducer(state = initialState, action) {
             const {id} = action.payload;
             let byIds = state.byIds;
             delete byIds[id];
-            return {
+            let s = {
                 ...state,
                 allIds: state.allIds.filter(v=> (v !== id)),
                 byIds: byIds,
                 selectedId: null
             };
+            writeToLocal(s);
+            return s;
         }
         case SELECT_COLOR: {
             const {id} = action.payload;
-            return {
+            let s = {
                 ...state,
                 selectedId: id
             };
+            writeToLocal(s);
+            return s;
         }
         case ADD_COLOR: {
-            const {id, name, channels} = action.payload;
-            return {
+            const {name, channels} = action.payload;
+            const id = (state.allIds.includes(action.payload.id))? Math.max.apply(null, state.allIds) + 1 : action.payload.id;
+            let s = {
                 ...state,
                 allIds: [...state.allIds, id],
                 byIds: {
@@ -45,6 +54,8 @@ function colorsReducer(state = initialState, action) {
                 },
                 selectedId: id
             };
+            writeToLocal(s);
+            return s;
         }
         case SET_COLOR_NAME: {
             const {id, name} = action.payload;
@@ -77,7 +88,7 @@ function colorsReducer(state = initialState, action) {
             let updates = {};
             if(name){updates.name = name;}
             if(channels){updates.channels = channels;}
-            return {
+            let s = {
                 ...state,
                 byIds: {
                     ...state.byIds,
@@ -87,6 +98,8 @@ function colorsReducer(state = initialState, action) {
                     }
                 }
             };
+            writeToLocal(s);
+            return s;
         }
         default: 
             return state;

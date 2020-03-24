@@ -40,6 +40,7 @@ class MixerChannel extends React.Component {
                 <input 
                     className='cmc-number'
                     value={this.props.value}
+                    data-ch={this.props.channelName}
                     min={0}
                     max={255}
                     step={1}
@@ -121,6 +122,7 @@ class ColorMixer extends React.Component {
         let exists = (this.state.id !== null);
         if(action === 'reset'){
             let origColor = this.state.originalColor;
+            window.localStorage.removeItem('colors');
             this.setState({
                 color: origColor.clone(),
                 name: origColor.name,

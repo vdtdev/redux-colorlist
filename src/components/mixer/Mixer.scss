@@ -18,7 +18,7 @@ $mixer-pad: 4pt;
             }
             & > .value {
                 text-align: center;
-                width: 3em;
+                width: 4em;
             }
         }
 
@@ -41,6 +41,17 @@ $mixer-pad: 4pt;
 
                 & > .cmc-number {
                     width: 3em;
+                    border-radius: 1.5em;
+                    padding: .5em;
+                    &[data-ch=Red]{
+                        background-color: #ffc0c0;
+                    }
+                    &[data-ch=Green]{
+                        background-color: #c0ffc0;
+                    }
+                    &[data-ch=Blue]{
+                        background-color: #c0c0ff;
+                    }
                 }
 
                 & > .cmc-range {
@@ -59,11 +70,22 @@ $mixer-pad: 4pt;
             flex: 1;
             & > input {
                 min-width: 15em;
+                border-radius: 1.5em;
+                padding: .5em;
             }
         }
 
         & > * {
             margin-right: $mixer-pad;
+        }
+
+        & > button {
+            border-radius: 1.5em;
+            padding: {
+                left: 1em; right: 1em;
+                top: .5em; bottom: .5em;
+            };
+            background-color: #dedede;
         }
     }
 }
