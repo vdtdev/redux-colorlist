@@ -35,6 +35,6 @@
   "devDependencies": {
     "@babel/node": "^7.6.3",
     "jasmine": "^3.5.0",
-    "node-sass": "^4.12.0"
+    "node-sass": "^7.0.0"
   }
 }
